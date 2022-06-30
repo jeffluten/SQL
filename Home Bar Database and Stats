@@ -1,0 +1,39 @@
+CREATE TABLE bar (id INTEGER PRIMARY KEY, name TEXT, category TEXT, price INTEGER, rating INTEGER, quantity INTEGER);
+
+INSERT INTO bar VALUES (1, "Plantation 3 stars", "rum", 22.49, 7, 2);
+INSERT INTO bar VALUES (2, "Milagro repo", "tequila", 29.99, 6, 1);
+INSERT INTO bar VALUES (3, "Old Grand Dad 114", "whiskey", 25.49, 7, 2);
+INSERT INTO bar VALUES (4, "Grey Goose", "vodka", 23.99, 6, 1);
+INSERT INTO bar VALUES (5, "Bluecoat", "gin", 29.99, 8, 1);
+INSERT INTO bar VALUES (6, "Probitas", "rum", 33.99, 8, 1);
+INSERT INTO bar VALUES (7, "Fidencio", "mezcal", 49.99, 8, 1);
+INSERT INTO bar VALUES (8, "Campari", "liqueur", 33.59, 7, 2);
+INSERT INTO bar VALUES (9, "Green Chartreuse", "liqueur", 82.99, 9, 1);
+INSERT INTO bar VALUES (10, "Rittenhouse Rye", "whiskey", 21.99, 6, 2);
+INSERT INTO bar VALUES (11, "Suntory", "whiskey", 29.99, 7, 1);
+INSERT INTO bar VALUES (12, "Bozal Ensamble", "mezcal", 50.99, 8, 1);
+INSERT INTO bar VALUES (13, "Doctor Bird", "rum", 28.49, 8, 1);
+INSERT INTO bar VALUES (14, "Empress", "gin", 34.99, 7, 2);
+INSERT INTO bar VALUES (15, "Woodinville Whiskey", "whiskey", 39.99, 6, 8);
+
+--Display all products highest price to lowest
+SELECT * FROM bar
+ORDER BY price desc;
+
+--Display all products with a 7 or higher rating sorted highest price to lowest
+SELECT * FROM bar 
+WHERE rating >= 7 ORDER BY price desc;
+
+--Display the prices of the rums from highest to lowest
+SELECT * FROM bar
+WHERE category = "rum" ORDER BY price desc;
+
+--Display the average cost of a bottle of whiskey on the bar
+SELECT avg(price) "average whiskey price"
+FROM bar
+WHERE category = "whiskey"; 
+
+==Display the 5 most expensive bottles at the bar
+SELECT name, category, price FROM bar
+ORDER BY price desc
+LIMIT 5;
