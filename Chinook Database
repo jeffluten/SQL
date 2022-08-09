@@ -1,0 +1,95 @@
+
+1. Show customer names outisde of the USA.
+
+--SELECT CustomerId, FirstName, LastName, Country
+--FROM chinook.customers
+--WHERE Country != "USA"
+--;
+
+2. Show names of cutsomers from Brazil.
+
+--SELECT CustomerId, FirstName, LastName, Country
+--FROM chinook.customers
+--WHERE Country = "Brazil"
+--;
+
+3. Show invoice data from customers from Brazil.
+
+--SELECT CustomerID, FirstName, LastName, InvoiceID, InvoiceDate, BillingCountry
+--FROM chinook.customers
+--JOIN chinook.invoices
+--ON invoices.customerid = customers.customerID
+--WHERE Country = "Brazil"
+--;
+
+4. Show the employees who work as sales agents.
+
+--SELECT FirstName, LastName, Title
+--FROM chinook.employees
+--WHERE Title = "Sales Support Agent"
+--;
+
+5. Find unique billing countries from invoice data.
+
+--SELECT DISTINCT BillingCountry
+--FROM chinook.invoices
+--;
+
+6. Show sales agents and their total sales numbers.
+
+--SELECT employees.FirstName, employees.LastName, SUM(invoices.total) AS Total_Sales
+--FROM chinook.invoices
+--JOIN chinook.customers
+--ON customers.CustomerId = invoices.CustomerId
+--JOIN chinook.employees
+--ON customers.SupportRepId = EmployeeId
+--GROUP BY employees.EmployeeId
+--ORDER BY Total_Sales desc
+--;
+
+7. How many invoices were there in 2009?
+
+--SELECT COUNT(CustomerID) AS Orders_In_2009
+--FROM chinook.invoices
+--WHERE invoicedate LIKE '2009%'
+--;
+
+8. What were the total sales for 2009?
+
+--SELECT SUM(total) AS Total_Sales_2009
+--FROM chinook.invoices
+--WHERE invoiceDate LIKE '2009%'
+--;
+
+9. Show track name and invoice information.
+
+--SELECT tracks.name, invoice_items.UnitPrice, invoice_items.quantity, invoice_items.invoicelineID
+--FROM chinook.invoice_items
+--JOIN chinook.tracks
+--ON invoice_items.trackID = tracks.trackID
+--;
+
+10. Show title, album, genre, and media type for each track.
+
+--SELECT tracks.name AS Title, albums.title AS Album, genres.name AS Genre, media_types.name AS Media_Type
+--FROM chinook.tracks
+--JOIN chinook.albums
+--ON tracks.albumID = albums.albumID
+--JOIN chinook.genres
+--ON genres.genreID = tracks.genreID
+--JOIN chinook.media_types
+--ON media_types.mediatypeid = tracks.mediatypeid
+
+11. Show sales agent with the most sales in 2009 and how much they sold.
+
+--SELECT employees.FirstName, employees.LastName, SUM(invoices.total) AS Total_Sales
+--FROM chinook.invoices
+--JOIN chinook.customers
+--ON customers.CustomerId = invoices.CustomerId
+--JOIN chinook.employees
+--ON customers.SupportRepId = EmployeeId
+--WHERE invoices.invoicedate LIKE '2009%'
+--GROUP BY employees.EmployeeId
+--ORDER BY Total_Sales desc
+--LIMIT 1
+--;
